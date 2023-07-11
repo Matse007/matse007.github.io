@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matse007</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -35,15 +35,16 @@
             color: white;
             text-shadow: 0 0 1px transparent, 0 1px 2px rgb(0 0 0 / 50%);
         }
+
         h3 {
             font-family: 'Saira', sans-serif;
             font-weight: 400;
             text-transform: uppercase;
-            color: rgb(235, 234, 234);
+            color: rgb(241, 241, 241);
             text-shadow: 0 0 1px transparent, 0 1px 2px rgb(0 0 0 / 50%);
         }
 
-        body >img {
+        body>img {
             object-fit: cover;
             position: absolute;
             top: 0;
@@ -59,7 +60,7 @@
             inset: 0;
             overflow-y: scroll;
         }
-        
+
         section div {
             display: flex;
             flex-direction: column;
@@ -72,7 +73,7 @@
             align-items: center;
         }
 
-        section > div {
+        section>div {
             padding: 100px 10px;
         }
 
@@ -107,7 +108,77 @@
             font-size: 1.3em;
         }
 
+        /* Popup container */
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid white;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            gap: 20px;
+            align-items: center;
+            border-radius: 4px;
+            transition-duration: 200ms;
+        }
 
+        /* The actual popup (appears on top) */
+        .popup .popuptext {
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+            opacity: 0;
+        }
+
+        /* Popup arrow */
+        .popup .popuptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .popup .show {
+            opacity: 1;
+            /* Show the popup */
+            animation: fadeEffect 2s ease-in-out forwards;
+        }
+
+
+        @keyframes fadeEffect {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -118,11 +189,11 @@
             <img src="https://pbs.twimg.com/profile_images/923809104820359169/NESm_SBb_400x400.jpg" alt="dp" />
             <h2>Matse007</h2>
             <h3>Speedrunner, developer and hobby photographer </h3>
-            <div>      
+            <div>
                 <a href="https://twitter.com/MatsesPics">
                     <i class="fa-brands fa-twitter"></i>
                     <p>Twitter for photography</p>
-                </a>              
+                </a>
                 <a href="">
                     <i class="fa-brands fa-instagram"></i>
                     <p>Instagram for photography (not setup yet)</p>
@@ -131,7 +202,7 @@
                     <i class="fa-regular fa-images"></i>
                     <p>Lensdump albums</p>
                 </a>
-                
+
                 <a href="https://www.twitch.tv/matse007 ">
                     <i class="fa-brands fa-twitch"></i>
                     <p>Twitch</p>
@@ -144,13 +215,54 @@
                     <i class="fa-brands fa-youtube"></i>
                     <p>YouTube</p>
                 </a>
+                <a class="popup" href="javascript:void(0);" onclick="showPopup()">
+                    <i class="fa-brands fa-discord"></i>
+                    <span class="popuptext" id="myPopup">Copied matse007</span>
+                    <p>Click to copy my Discord Username</p>
+                </a>
                 <a href="https://github.com/Matse007/">
                     <i class="fa-brands fa-github"></i>
                     <p>GitHub</p>
                 </a>
+
             </div>
         </div>
     </section>
+
+
+    <script>
+        // When the user clicks on div, open the popup
+        function popupDiscord() {
+
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+            setTimeout(function () {
+
+            }, 6000);
+        }
+
+        function showPopup() {
+            var popup = document.getElementById("myPopup");
+            popup.classList.add("show");
+            copyText();
+            setTimeout(function () {
+                popup.classList.remove("show");
+            }, 2000); // Adjust the timeout value (in milliseconds) to control how long the popup stays visible
+        }
+
+        function copyText() {
+            const textToCopy = "matse007";
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    console.log("Text copied to clipboard");
+                })
+                .catch((error) => {
+                    console.error("Error copying text to clipboard:", error);
+                });
+        }
+    </script>
+
+
 </body>
 
 </html>
